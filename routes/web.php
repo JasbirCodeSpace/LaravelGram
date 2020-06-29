@@ -20,4 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/profile/{user}', 'ProfilesContoller@index')->name('profile.show');
-
+Route::get('/p','PostsController@create');
