@@ -8,18 +8,18 @@
              class="rounded-circle" alt="LaravelGram">
         </div>
         <div class="col-9 pt-3">
-            <div><h1>LaravelGram</h1></div>
+            <div><h1>{{ $user->username }}</h1></div>
             <div class="d-flex">
                 <div class="pr-3"><strong>51k</strong> followers</div>
                 <div class="pr-3"><strong>261</strong> following</div>
                 <div class="pr-3"><strong>304</strong> posts</div>
             </div>
-            <div class="pt-4 font-weight-bold">laravelgram.com</div>
+            <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
             <div class="pt-1">
-                <p>We're a global community of millions of people learning to code together. We're an open source, donor-supported, 501(c)(3) nonprofit.</p>
+                <p>{{ $user->profile->description }}</p>
             </div>
             <div>
-                <a href="https://www.freecodecamp.org/">www.freecodecamp.org</a>
+                <a href="{{ $user->profile->url }}" target="_blank">{{ $user->profile->url ?? 'N/A'}}</a>
             </div>
         </div>
     </div>
