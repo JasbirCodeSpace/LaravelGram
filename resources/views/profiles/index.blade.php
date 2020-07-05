@@ -4,14 +4,18 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img src="https://scontent-del1-1.cdninstagram.com/v/t51.2885-19/s150x150/97566921_2973768799380412_5562195854791540736_n.jpg?_nc_ht=scontent-del1-1.cdninstagram.com&_nc_ohc=aBCmYoNjto4AX-6NMff&oh=2b024509113fb54fce3e3a99912c083d&oe=5F1F4167" class="rounded-circle" alt="LaravelGram">
+            <img src="/storage/{{$user->profile->image}}" class="rounded-circle w-100" alt="LaravelGram">
         </div>
         <div class="col-9 pt-3">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{ $user->username }}</h1>
+                @can ('update',$user->profile)
                 <a href="/p/create">Add New Post</a>
+                @endcan
             </div>
+            @can ('update',$user->profile)
             <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+            @endcan
 
             <div class="d-flex">
                 <div class="pr-3"><strong>{{ $user->posts->count()}}</strong> posts</div>
