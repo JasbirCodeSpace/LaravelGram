@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username','password',
+        'name', 'email', 'username', 'password',
     ];
 
     /**
@@ -37,11 +37,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function profile(){
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($user) {
+            $user->profile()->create([
+                'title' => $user->username,
+            ]);
+        });
+    }
+
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
     }
 
-    public function posts(){
-        return $this->hasMany(Post::class)->orderBy('created_at','DESC');
+    public function posts()
+    {
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 }
